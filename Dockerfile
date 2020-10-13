@@ -9,10 +9,7 @@ RUN apt-get -qq update && apt-get install \
   --yes  > /dev/null
 
 RUN conda install -n rapids \
-  -c fastai  \
-  -c pytorch  \
   -c conda-forge \
-  fastai \
   nodejs \
   ipywidgets \
   requests \
@@ -21,7 +18,14 @@ RUN conda install -n rapids \
   tqdm \
   ipykernel \
   pip \
-  --yes --quiet
+  --yes > /dev/null
+
+
+RUN conda install -n rapids \
+  -c fastai  \
+  -c pytorch  \
+  'fastai>=2' \
+  --yes > /dev/null
 
 # Overwrite default startup script to use jupyter token
 COPY start_jupyter.sh /rapids/utils/
