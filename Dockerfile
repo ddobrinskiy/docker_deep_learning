@@ -1,32 +1,34 @@
-FROM rapidsai/rapidsai:cuda11.0-runtime-ubuntu16.04
+FROM fastdotai/fastai-course:latest
 
-RUN apt-get -qq update && apt-get install \
+RUN add-apt-repository ppa:graphics-drivers/ppa -y && \
+    apt-get -qq update && apt-get install \
   vim \
   git \
   ssh \
   zsh \
   tree \
+  nvidia-utils-450-server \
   --yes  > /dev/null
 
-RUN conda install -n rapids \
-  -c conda-forge \
+RUN conda install -c conda-forge \
   nodejs \
   ipywidgets \
-  requests \
-  plotly \
-  loguru \
-  tqdm \
   ipykernel \
   pip \
+  jupyterlab \
   --yes > /dev/null
 
+RUN conda install \
+    -c rapidsai -c nvidia -c conda-forge \
+    -c defaults \
+    rapids=0.15 \
+    python=3.7 \
+    cudatoolkit=10.1 \
+    --yes 
 
-RUN conda install -n rapids \
-  -c fastai  \
-  -c pytorch  \
-  'fastai>=2' \
-  --yes > /dev/null
 
 # Overwrite default startup script to use jupyter token
-COPY start_jupyter.sh /rapids/utils/
+COPY run_jupyter.sh /workspace
+
+CMD [ "/bin/bash", "/workspace/run_jupyter.sh" ]
 
