@@ -10,21 +10,18 @@ RUN add-apt-repository ppa:graphics-drivers/ppa -y && \
   nvidia-utils-450-server \
   --yes  > /dev/null
 
-RUN conda install -c conda-forge \
+RUN conda install \
+    -c defaults -c conda-forge \
+    -c rapidsai -c nvidia \
   nodejs \
   ipywidgets \
   ipykernel \
   pip \
   jupyterlab \
-  --yes > /dev/null
-
-RUN conda install \
-    -c rapidsai -c nvidia -c conda-forge \
-    -c defaults \
-    rapids=0.15 \
-    python=3.7 \
-    cudatoolkit=10.1 \
-    --yes 
+  rapids=0.15 \
+  python=3.7 \
+  cudatoolkit=10.1 \
+  --yes
 
 
 # Overwrite default startup script to use jupyter token
