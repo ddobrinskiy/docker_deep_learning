@@ -30,4 +30,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: daviddobr/rapids:latest
+          tags: daviddobr/devbox:latest
