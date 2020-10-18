@@ -13,16 +13,17 @@ RUN add-apt-repository ppa:graphics-drivers/ppa -y && \
 RUN conda install \
     -c defaults -c conda-forge \
     -c rapidsai -c nvidia \
-  nodejs \
-  ipywidgets \
   ipykernel \
-  pip \
+  ipywidgets \
   jupyterlab \
+  loguru \
+  mlflow \
+  nodejs \
+  pip \
   rapids=0.15 \
   --yes
 #  python=3.7 \
 #  cudatoolkit=10.1 \
-
 
 # Overwrite default startup script to use jupyter token
 COPY run_jupyter.sh /workspace
