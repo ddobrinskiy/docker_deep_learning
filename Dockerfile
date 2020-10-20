@@ -20,9 +20,9 @@ RUN conda install \
   mlflow \
   nodejs \
   pip \
-  python=3.8 \
   rapids=0.15 \
   --yes
+#  python=3.7 \
 #  cudatoolkit=10.1 \
 
 # add all stuff in workspace to notebooks 
