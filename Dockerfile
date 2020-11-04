@@ -20,7 +20,7 @@ RUN conda install \
   mlflow \
   nodejs \
   pip \
-  rapids=0.15 \
+  rapids=0.16 \
   --yes
 #  python=3.7 \
 #  cudatoolkit=10.1 \
