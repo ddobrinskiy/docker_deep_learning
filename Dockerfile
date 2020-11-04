@@ -16,18 +16,14 @@ RUN conda install \
   ipykernel \
   ipywidgets \
   jupyterlab \
-  loguru \
-  mlflow \
-  nodejs \
-  pip \
   rapids=0.16 \
   --yes
 #  python=3.7 \
 #  cudatoolkit=10.1 \
-
-# add all stuff in workspace to notebooks 
-RUN ln -s /workspace/* /notebooks
-RUN ln -s /storage/proj /notebooks/proj
+#  loguru \
+#  mlflow \
+#  nodejs \
+#  pip \
 
 # Overwrite default startup script to use jupyter token
 COPY run_jupyter.sh /workspace
